@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\wwwroot\\appsettings.Development.json",
+      "PackagePath": "staticwebassets\\appsettings.Development.json"
+    },
+    {
+      "Id": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\wwwroot\\appsettings.json",
+      "PackagePath": "staticwebassets\\appsettings.json"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ZipWasm.Client.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ZipWasm.Client.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.ZipWasm.Client.props",
+      "PackagePath": "build\\ZipWasm.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.ZipWasm.Client.props",
+      "PackagePath": "buildMultiTargeting\\ZipWasm.Client.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.ZipWasm.Client.props",
+      "PackagePath": "buildTransitive\\ZipWasm.Client.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

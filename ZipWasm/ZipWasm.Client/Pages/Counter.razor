@@ -1,0 +1,194 @@
+﻿@page "/counter"
+@using System.IO.Compression
+@rendermode InteractiveWebAssembly
+@using System.Drawing;
+@using System.IO.Compression;
+@using System.Net.Security;
+@using System.Text;
+@using System.Xml.Linq;
+@using VCDiff.Decoders;
+@using VCDiff.Encoders;
+@using VCDiff.Includes;
+@using ZstdNet;
+
+<MudFileUpload T="IReadOnlyList<IBrowserFile>" FilesChanged="UploadFiles">
+    <ActivatorContent>
+        <MudButton Variant="Variant.Filled"
+                   Color="MudBlazor.Color.Primary"
+                   StartIcon="@Icons.Material.Filled.CloudUpload">
+            Multiple Files
+        </MudButton>
+    </ActivatorContent>
+</MudFileUpload>
+
+<MudButton Variant="Variant.Outlined" OnClick="IncrementCount">GZip</MudButton>
+
+@code {
+    private HashSet<string> directories = new HashSet<string>();
+
+    private async Task UploadFiles(IReadOnlyList<IBrowserFile> files)
+    {
+        string dirPath = Path.Combine(Environment.CurrentDirectory, directories.Count.ToString(), "uploaded");
+        DirectoryInfo dir = Directory.CreateDirectory(dirPath);
+        directories.Add(dir.FullName);
+        foreach (var file in files)
+        {
+            string filePath = Path.Combine(dir.FullName, file.Name);
+            await file.OpenReadStream(1000000000).CopyToAsync(File.Create(filePath));
+        }
+    }
+
+    private static List<Func<FileInfo, FileInfo, TimeSpan>> encodeFuncs = new List<Func<FileInfo, FileInfo, TimeSpan>> { VCDiffEncode, GZipEncode, DeflateEncode, BrotliEncode, ZstdEncode };
+    private static List<Func<FileInfo, FileInfo, TimeSpan>> decodeFuncs = new List<Func<FileInfo, FileInfo, TimeSpan>> { VCDiffDecode, GZipDecode, DeflateDecode, BrotliDecode, ZstdDecode };
+    private static List<TimeSpan> encodeTime = new List<TimeSpan> { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero };
+    private static List<TimeSpan> decodeTime = new List<TimeSpan> { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero };
+
+    private void IncrementCount()
+    {
+        DirectoryInfo directoryInfo = new DirectoryInfo(directories.First());
+        for (int i = 0; i < encodeFuncs.Count; i++)
+        {
+            double totalOgSize = 0;
+            double totalModSize = 0;
+            double totalDiffSize = 0;
+
+            var encode = encodeFuncs[i];
+            var decode = decodeFuncs[i];
+
+            string funcName = encode.Method.Name;
+            var files = directoryInfo.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                TimeSpan encodeDuration = encode.Invoke(file);
+                encodeTime[i] += encodeDuration;
+
+                TimeSpan decodeDuration = decode.Invoke(file);
+                decodeTime[i] += decodeDuration;
+            }
+        }
+    }
+
+    private static TimeSpan VCDiffEncode(FileInfo oldFile, FileInfo newFile)
+    {
+        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(oldFile.Directory.Parent.FullName, "vcdiff_encode"));
+        FileInfo diffFile = new FileInfo(Path.Combine(encodeDir.FullName, oldFile.Name));
+
+        using var sourceStream = File.Open(oldFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using var targetStream = File.Open(newFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+        DateTime encodeStart = DateTime.Now;
+        using VcEncoder coder = new VcEncoder(sourceStream, targetStream, File.Create(diffFile.FullName));
+        VCDiffResult encodeRes = coder.Encode();
+        return DateTime.Now - encodeStart;
+    }
+
+    private static TimeSpan VCDiffDecode(FileInfo oldFile, FileInfo diffFile)
+    {
+        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(diffFile.Directory.Parent.FullName, "vcdiff_decode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, diffFile.Name));
+
+        using var sourceStream = File.Open(oldFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using var deltaStream = File.Open(diffFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+        DateTime decodeStart = DateTime.Now;
+        using VcDecoder decoder = new VcDecoder(sourceStream, deltaStream, File.Create(encodedFile.FullName));
+        VCDiffResult decodeRes = decoder.Decode(out long bytesWritten);
+        return DateTime.Now - decodeStart;
+    }
+
+    private static TimeSpan GZipEncode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "gzip_encode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
+
+        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+        DateTime start = DateTime.Now;
+        fileStream.CopyTo(new GZipStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
+        return DateTime.Now - start;
+    }
+
+    private static TimeSpan GZipDecode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "gzip_decode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
+
+        using var processedStream = new GZipStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
+
+        DateTime start = DateTime.Now;
+        processedStream.CopyTo(File.Create(encodedFile.FullName));
+        return DateTime.Now - start;
+    }
+
+    private static TimeSpan DeflateEncode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "deflate_encode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
+
+        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+        DateTime start = DateTime.Now;
+        fileStream.CopyTo(new DeflateStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
+        return DateTime.Now - start;
+    }
+
+    private static TimeSpan DeflateDecode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "deflate_decode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
+
+        using var processedStream = new DeflateStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
+
+        DateTime start = DateTime.Now;
+        processedStream.CopyTo(File.Create(encodedFile.FullName));
+        return DateTime.Now - start;
+    }
+
+    private static TimeSpan BrotliEncode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "brotli_encode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
+
+        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+        DateTime start = DateTime.Now;
+        fileStream.CopyTo(new BrotliStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
+        return DateTime.Now - start;
+    }
+
+    private static TimeSpan BrotliDecode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "brotli_decode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
+
+        using var processedStream = new BrotliStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
+
+        DateTime start = DateTime.Now;
+        processedStream.CopyTo(File.Create(encodedFile.FullName));
+        return DateTime.Now - start;
+    }
+
+    private static TimeSpan ZstdEncode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "zstd_encode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
+
+        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+        DateTime start = DateTime.Now;
+        fileStream.CopyTo(new CompressionStream(File.Create(encodedFile.FullName)));
+        return DateTime.Now - start;
+    }
+
+    private static TimeSpan ZstdDecode(FileInfo file, FileInfo _ = null)
+    {
+        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "zstd_decode"));
+        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
+
+        using var processedStream = new DecompressionStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read));
+
+        DateTime start = DateTime.Now;
+        processedStream.CopyTo(File.Create(encodedFile.FullName));
+        return DateTime.Now - start;
+    }
+}

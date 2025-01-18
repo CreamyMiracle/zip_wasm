@@ -1,0 +1,4 @@
+D:\Dev\zip_wasm\ZipWasm\ZipWasm.Client\wwwroot\appsettings.json
+D:\Dev\zip_wasm\ZipWasm\ZipWasm.Client\wwwroot\appsettings.Development.json
+wwwroot\appsettings.Development.json
+wwwroot\appsettings.json

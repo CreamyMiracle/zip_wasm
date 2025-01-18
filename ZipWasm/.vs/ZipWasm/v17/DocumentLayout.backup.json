@@ -1,0 +1,174 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Dev\\zip_wasm\\ZipWasm\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\zipwasm.client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\zipwasm.client.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "ZipWasm\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "ZipWasm\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-18T21:36:13.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Program.cs",
+              "RelativeDocumentMoniker": "ZipWasm\\Program.cs",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Program.cs",
+              "RelativeToolTip": "ZipWasm\\Program.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAACkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T21:35:18.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "ZipWasm\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "ZipWasm\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-18T21:26:01.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Program.cs",
+              "RelativeDocumentMoniker": "ZipWasm.Client\\Program.cs",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Program.cs",
+              "RelativeToolTip": "ZipWasm.Client\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-18T21:25:44.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.razor",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\App.razor",
+              "RelativeDocumentMoniker": "ZipWasm\\Components\\App.razor",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\App.razor",
+              "RelativeToolTip": "ZipWasm\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-18T21:24:28.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\_Imports.razor",
+              "RelativeDocumentMoniker": "ZipWasm.Client\\_Imports.razor",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\_Imports.razor",
+              "RelativeToolTip": "ZipWasm.Client\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-18T21:23:43.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ZipWasm.Client.csproj",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\ZipWasm.Client.csproj",
+              "RelativeDocumentMoniker": "ZipWasm.Client\\ZipWasm.Client.csproj",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\ZipWasm.Client.csproj",
+              "RelativeToolTip": "ZipWasm.Client\\ZipWasm.Client.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-18T16:47:02.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "ZipWasm.Client\\Pages\\Counter.razor",
+              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Pages\\Counter.razor",
+              "RelativeToolTip": "ZipWasm.Client\\Pages\\Counter.razor",
+              "ViewState": "AgIAAHkAAAAAAAAAAAApwJAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-18T16:35:35.972Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1758,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{605322a2-17ae-43f4-b60f-766556e46c87}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

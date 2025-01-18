@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ZipWasm.Client.props" />
+</Project>
