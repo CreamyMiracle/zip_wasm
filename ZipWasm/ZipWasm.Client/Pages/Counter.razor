@@ -1,4 +1,4 @@
-﻿@page "/counter"
+﻿@page "/"
 @using System.IO.Compression
 @rendermode InteractiveWebAssembly
 @using System.Drawing;
@@ -9,26 +9,237 @@
 @using VCDiff.Decoders;
 @using VCDiff.Encoders;
 @using VCDiff.Includes;
+@using ZipWasm.Client.Helpers
 @using ZstdNet;
 
-<MudFileUpload T="IReadOnlyList<IBrowserFile>" FilesChanged="UploadFiles">
-    <ActivatorContent>
-        <MudButton Variant="Variant.Filled"
-                   Color="MudBlazor.Color.Primary"
-                   StartIcon="@Icons.Material.Filled.CloudUpload">
-            Multiple Files
-        </MudButton>
-    </ActivatorContent>
-</MudFileUpload>
+<MudPopoverProvider />
 
-<MudButton Variant="Variant.Outlined" OnClick="IncrementCount">GZip</MudButton>
+<MudDropContainer T="DropItem" @ref="_dropContainer" Items="_items" CanDropClass="mud-border-info" NoDropClass="mud-border-error" CanDrop="@((item,identifier) => item.Type != DropItem.ItemType.Result && _items.Count(x => x.Identifier == identifier ) == 0)" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="border-2 border-solid mud-border-lines-default">
+    <ChildContent>
+        @for (int r = 0; r < 8; r++)
+        {
+            var row = r.ToString();
+            <div class="d-flex">
+                @for (int c = 0; c < 15; c++)
+                {
+                    var col = c.ToString();
+                    <MudMenu ActivationEvent="@MouseEvent.RightClick">
+                        <ActivatorContent>
+                            <MudDropZone T="DropItem" Identifier="@($"{row}-{col}")" DraggingClass="mud-theme-success" Class="d-flex justify-center align-center border-2 border-solid docs-gray-bg mud-border-lines-default" Style="height:64px;width:64px;">
+
+                            </MudDropZone>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <MudMenuItem>
+                                <MudFileUpload T="IReadOnlyList<IBrowserFile>" FilesChanged="@(param => UploadFiles(param, $"{row}-{col}"))">
+                                    <ActivatorContent>
+                                        <MudButton Color="MudBlazor.Color.Dark">Upload</MudButton>
+                                    </ActivatorContent>
+                                </MudFileUpload>
+                            </MudMenuItem>
+                            <MudMenuItem>
+                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.GZipEncode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Gzip</MudButton>
+                            </MudMenuItem>
+                            <MudMenuItem>
+                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.DeflateEncode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Deflate</MudButton>
+                            </MudMenuItem>
+                            <MudMenuItem>
+                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.VCDiffEncode, $"{row}-{col}", @Icons.Material.Rounded.SwapVerticalCircle, DropItem.ItemType.Diff))">Vcdiff</MudButton>
+                            </MudMenuItem>
+                            <MudMenuItem>
+                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.GZipDecode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Un-Gzip</MudButton>
+                            </MudMenuItem>
+                            <MudMenuItem>
+                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.DeflateDecode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Un-Deflate</MudButton>
+                            </MudMenuItem>
+                            <MudMenuItem>
+                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.VCDiffDecode, $"{row}-{col}", @Icons.Material.Rounded.SwapVerticalCircle, DropItem.ItemType.Diff))">Un-Vcdiff</MudButton>
+                            </MudMenuItem>
+                        </ChildContent>
+                    </MudMenu>
+                }
+            </div>
+        }
+    </ChildContent>
+    <ItemRenderer>
+        <div class="d-flex justify-center align-center flex-grow-1">
+            <MudTooltip>
+                <ChildContent>
+                    <MudIcon Icon="@context.Icon" Color="@context.Color" Size="MudBlazor.Size.Medium" />
+                </ChildContent>
+                <TooltipContent>
+                    <MudText Typo="Typo.body2">@GetDirSize(context)</MudText>
+                    <MudText Typo="Typo.body2">@GetInfo(context)</MudText>
+                </TooltipContent>
+            </MudTooltip>
+        </div>
+    </ItemRenderer>
+</MudDropContainer>
 
 @code {
+    private FileOperations _fileOperations = new FileOperations();
+    private MudDropContainer<DropItem> _dropContainer;
     private HashSet<string> directories = new HashSet<string>();
 
-    private async Task UploadFiles(IReadOnlyList<IBrowserFile> files)
+    private void EvaluateFunc(DropItem funcItem)
     {
-        string dirPath = Path.Combine(Environment.CurrentDirectory, directories.Count.ToString(), "uploaded");
+        if (funcItem.Func == null)
+        {
+            return;
+        }
+
+        Queue<string> inputIds = funcItem.GetInputIds();
+
+        var inputItems = _items.Where(other => inputIds.Contains(other.Identifier)).ToList();
+
+        string resultId = funcItem.GetResultId();
+        RemoveResult(resultId);
+
+        // Evaluate
+        if (inputItems != null)
+        {
+            if (inputItems.Count() == 1 && funcItem.Type == DropItem.ItemType.Compress)
+            {
+                var inputItem = inputItems[0];
+                if (inputItem.Type == DropItem.ItemType.Result || inputItem.Type == DropItem.ItemType.Upload)
+                {
+                    DirectoryInfo inputDir = new DirectoryInfo(inputItem.Path);
+                    string resultPath = null;
+
+                    KeyValuePair<string, TimeSpan> res = funcItem.Func.Invoke(inputDir, null);
+                    resultPath = res.Key;
+
+                    if (resultPath != null)
+                    {
+                        AddResult(resultPath, resultId);
+                    }
+                }
+            }
+            else if (inputItems.Count() == 2 && funcItem.Type == DropItem.ItemType.Diff)
+            {
+                // To ensure order
+                var inputItem1 = inputItems[0];
+                var inputItem2 = inputItems[1];
+
+                if (inputItem1.Type == DropItem.ItemType.Result || inputItem1.Type == DropItem.ItemType.Upload
+                && inputItem2.Type == DropItem.ItemType.Result || inputItem2.Type == DropItem.ItemType.Upload)
+                {
+                    DirectoryInfo inputDir1 = new DirectoryInfo(inputItem1.Path);
+                    DirectoryInfo inputDir2 = new DirectoryInfo(inputItem2.Path);
+                    string resultPath = null;
+
+                    KeyValuePair<string, TimeSpan> res = funcItem.Func.Invoke(inputDir1, inputDir2);
+                    resultPath = res.Key;
+
+                    if (resultPath != null)
+                    {
+                        AddResult(resultPath, resultId);
+                    }
+                }
+            }
+        }
+    }
+
+    private DropItem? GetItemAt(int row, int col)
+    {
+        string resultId = string.Format("{0}-{1}", row, col);
+        return _items.Where(item => item.Identifier == resultId).FirstOrDefault();
+    }
+
+    private string GetInfo(DropItem item)
+    {
+        if (item.Type == DropItem.ItemType.Compress || item.Type == DropItem.ItemType.Diff)
+        {
+            (int, int) rowCol = DropItem.RowCol(item.Identifier);
+            var result = GetItemAt(rowCol.Item1, rowCol.Item2 + 1);
+            string dur = "";
+            if (result != null)
+            {
+                dur = " " + _fileOperations.GetDuration(result.Path);
+            }
+            return item.Func.Method.Name + dur;
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    private string GetDirSize(DropItem item)
+    {
+        if (item.Type == DropItem.ItemType.Compress || item.Type == DropItem.ItemType.Diff)
+        {
+            return "";
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(item.Path))
+            {
+                return "N/A";
+            }
+
+            DirectoryInfo dir = new DirectoryInfo(item.Path);
+            long dirSize = dir.EnumerateFiles("*", SearchOption.TopDirectoryOnly).Sum(file => file.Length);
+            return Math.Round(FileOperations.ToSize(dirSize, FileOperations.SizeUnit.MB), 1).ToString()  + "MB";
+        }
+    }
+
+    private void AddFunc(Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, TimeSpan>> func, string rowCol, string icon, DropItem.ItemType type)
+    {
+        var item = _items.Where(item => item.Identifier == rowCol).FirstOrDefault();
+        if (item != null)
+        {
+            _items.Remove(item);
+        }
+
+        RemoveResult(rowCol);
+
+        DropItem newItem = new DropItem(type, icon, rowCol, null, func);
+        _items.Add(newItem);
+
+        EvaluateAll();
+    }
+
+    private void AddResult(string? path, string newRowCol)
+    {
+        var newItem = _items.Where(item => item.Identifier == newRowCol).FirstOrDefault();
+        if (newItem != null)
+        {
+            _items.Remove(newItem);
+        }
+
+        DropItem result = new DropItem(DropItem.ItemType.Result, @Icons.Material.TwoTone.InsertDriveFile, newRowCol, path, null);
+        _items.Add(result);
+
+        _dropContainer.Refresh();
+    }
+
+    private void RemoveResult(string prevRowCol)
+    {
+        var prevItem = _items.Where(item => item.Identifier == prevRowCol).FirstOrDefault();
+        if (prevItem != null && prevItem.Type == DropItem.ItemType.Result)
+        {
+            _items.Remove(prevItem);
+        }
+
+        _dropContainer.Refresh();
+    }
+
+    private void AddUpload(string path, string rowCol)
+    {
+        var item = _items.Where(item => item.Identifier == rowCol).FirstOrDefault();
+        if (item != null)
+        {
+            _items.Remove(item);
+        }
+        _items.Add(new DropItem(DropItem.ItemType.Upload, @Icons.Material.TwoTone.AttachFile, rowCol, path, null));
+
+        EvaluateAll();
+    }
+
+    private async Task UploadFiles(IReadOnlyList<IBrowserFile> files, string rowCol)
+    {
+        string dirPath = Path.Combine(Environment.CurrentDirectory, directories.Count.ToString(), "upload");
         DirectoryInfo dir = Directory.CreateDirectory(dirPath);
         directories.Add(dir.FullName);
         foreach (var file in files)
@@ -36,159 +247,154 @@
             string filePath = Path.Combine(dir.FullName, file.Name);
             await file.OpenReadStream(1000000000).CopyToAsync(File.Create(filePath));
         }
+
+        AddUpload(dir.FullName, rowCol);
     }
 
-    private static List<Func<FileInfo, FileInfo, TimeSpan>> encodeFuncs = new List<Func<FileInfo, FileInfo, TimeSpan>> { VCDiffEncode, GZipEncode, DeflateEncode, BrotliEncode, ZstdEncode };
-    private static List<Func<FileInfo, FileInfo, TimeSpan>> decodeFuncs = new List<Func<FileInfo, FileInfo, TimeSpan>> { VCDiffDecode, GZipDecode, DeflateDecode, BrotliDecode, ZstdDecode };
-    private static List<TimeSpan> encodeTime = new List<TimeSpan> { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero };
-    private static List<TimeSpan> decodeTime = new List<TimeSpan> { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero, TimeSpan.Zero };
-
-    private void IncrementCount()
+    private void ItemUpdated(MudItemDropInfo<DropItem> dropItem)
     {
-        DirectoryInfo directoryInfo = new DirectoryInfo(directories.First());
-        for (int i = 0; i < encodeFuncs.Count; i++)
+        dropItem.Item.MoveTo(dropItem.DropzoneIdentifier);
+
+        EvaluateAll();
+    }
+
+    private void EvaluateAll()
+    {
+        DeleteAllResults();
+        bool allEvaluated = false;
+
+        while (!allEvaluated)
         {
-            double totalOgSize = 0;
-            double totalModSize = 0;
-            double totalDiffSize = 0;
-
-            var encode = encodeFuncs[i];
-            var decode = decodeFuncs[i];
-
-            string funcName = encode.Method.Name;
-            var files = directoryInfo.GetFiles();
-            foreach (FileInfo file in files)
+            var oldItems = new List<DropItem>(_items);
+            foreach (var item in oldItems)
             {
-                TimeSpan encodeDuration = encode.Invoke(file);
-                encodeTime[i] += encodeDuration;
+                EvaluateFunc(item);
+            }
+            // No new items have appeared during this loop
+            allEvaluated = _items.Count() == oldItems.Count();
+        }
 
-                TimeSpan decodeDuration = decode.Invoke(file);
-                decodeTime[i] += decodeDuration;
+        _dropContainer.Refresh();
+    }
+
+    private void DeleteAllResults()
+    {
+        var temp = new List<DropItem>(_items);
+        foreach (var item in temp)
+        {
+            if (item.Type == DropItem.ItemType.Result)
+            {
+                _items.Remove(item);
             }
         }
+        _dropContainer.Refresh();
     }
 
-    private static TimeSpan VCDiffEncode(FileInfo oldFile, FileInfo newFile)
+    private bool MissingInput(DropItem item)
     {
-        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(oldFile.Directory.Parent.FullName, "vcdiff_encode"));
-        FileInfo diffFile = new FileInfo(Path.Combine(encodeDir.FullName, oldFile.Name));
+        if (item.Type != DropItem.ItemType.Compress || item.Type != DropItem.ItemType.Diff)
+        {
+            return false;
+        }
 
-        using var sourceStream = File.Open(oldFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-        using var targetStream = File.Open(newFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        var rowCol = DropItem.RowCol(item.Identifier);
+        var row = rowCol.Item1;
+        var col = rowCol.Item2;
+        var inputItem = _items.Where(other => other.Identifier == string.Format("{0}-{1}", row, col - 1)).FirstOrDefault();
 
-        DateTime encodeStart = DateTime.Now;
-        using VcEncoder coder = new VcEncoder(sourceStream, targetStream, File.Create(diffFile.FullName));
-        VCDiffResult encodeRes = coder.Encode();
-        return DateTime.Now - encodeStart;
+        return inputItem == null;
     }
 
-    private static TimeSpan VCDiffDecode(FileInfo oldFile, FileInfo diffFile)
+    private List<DropItem> _items = new();
+
+    public class DropItem
     {
-        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(diffFile.Directory.Parent.FullName, "vcdiff_decode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, diffFile.Name));
+        public enum ItemType
+        {
+            Compress,
+            Diff,
+            Upload,
+            Result
+        }
+        public DropItem(ItemType type, string icon, string id, string path, Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, TimeSpan>> func)
+        {
+            Identifier = id;
+            Type = type;
+            Icon = icon;
+            Path = path;
+            Func = func;
+            SetColor();
+        }
 
-        using var sourceStream = File.Open(oldFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-        using var deltaStream = File.Open(diffFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+        private void SetColor()
+        {
+            switch (Type)
+            {
+                case ItemType.Upload:
+                    Color = MudBlazor.Color.Info;
+                    break;
+                case ItemType.Compress:
+                    Color = MudBlazor.Color.Dark;
+                    break;
+                case ItemType.Diff:
+                    Color = MudBlazor.Color.Dark;
+                    break;
+                case ItemType.Result:
+                    Color = MudBlazor.Color.Success;
+                    break;
+            }
+        }
 
-        DateTime decodeStart = DateTime.Now;
-        using VcDecoder decoder = new VcDecoder(sourceStream, deltaStream, File.Create(encodedFile.FullName));
-        VCDiffResult decodeRes = decoder.Decode(out long bytesWritten);
-        return DateTime.Now - decodeStart;
-    }
+        public ItemType Type { get; private set; }
+        public string Icon { get; private init; }
+        public Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, TimeSpan>> Func { get; private set; }
+        public MudBlazor.Color Color { get; private set; }
+        public string Identifier { get; set; }
+        public string Path { get; set; }
 
-    private static TimeSpan GZipEncode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "gzip_encode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
+        public Queue<string> GetInputIds()
+        {
+            var rowCol = DropItem.RowCol(Identifier);
+            var row = rowCol.Item1;
+            var col = rowCol.Item2;
 
-        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var queue = new Queue<string>();
+            if (Type == ItemType.Compress)
+            {
+                queue.Enqueue(string.Format("{0}-{1}", row, col - 1));
+            }
+            else if (Type == ItemType.Diff)
+            {
+                queue.Enqueue(string.Format("{0}-{1}", row - 1, col));
+                queue.Enqueue(string.Format("{0}-{1}", row + 1, col));
+            }
 
-        DateTime start = DateTime.Now;
-        fileStream.CopyTo(new GZipStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
-        return DateTime.Now - start;
-    }
+            return queue;
+        }
 
-    private static TimeSpan GZipDecode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "gzip_decode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
+        public string GetResultId()
+        {
+            var rowCol = DropItem.RowCol(Identifier);
+            var row = rowCol.Item1;
+            var col = rowCol.Item2;
 
-        using var processedStream = new GZipStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
+            return string.Format("{0}-{1}", row, col + 1);
+        }
 
-        DateTime start = DateTime.Now;
-        processedStream.CopyTo(File.Create(encodedFile.FullName));
-        return DateTime.Now - start;
-    }
+        public static (int, int) RowCol(string rowCol)
+        {
+            string[] parts = rowCol.Split("-");
+            int row = int.Parse(parts[0]);
+            int col = int.Parse(parts[1]);
+            return (row, col);
+        }
 
-    private static TimeSpan DeflateEncode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "deflate_encode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
-
-        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-
-        DateTime start = DateTime.Now;
-        fileStream.CopyTo(new DeflateStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
-        return DateTime.Now - start;
-    }
-
-    private static TimeSpan DeflateDecode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "deflate_decode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
-
-        using var processedStream = new DeflateStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
-
-        DateTime start = DateTime.Now;
-        processedStream.CopyTo(File.Create(encodedFile.FullName));
-        return DateTime.Now - start;
-    }
-
-    private static TimeSpan BrotliEncode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "brotli_encode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
-
-        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-
-        DateTime start = DateTime.Now;
-        fileStream.CopyTo(new BrotliStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
-        return DateTime.Now - start;
-    }
-
-    private static TimeSpan BrotliDecode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "brotli_decode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
-
-        using var processedStream = new BrotliStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
-
-        DateTime start = DateTime.Now;
-        processedStream.CopyTo(File.Create(encodedFile.FullName));
-        return DateTime.Now - start;
-    }
-
-    private static TimeSpan ZstdEncode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "zstd_encode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
-
-        using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-
-        DateTime start = DateTime.Now;
-        fileStream.CopyTo(new CompressionStream(File.Create(encodedFile.FullName)));
-        return DateTime.Now - start;
-    }
-
-    private static TimeSpan ZstdDecode(FileInfo file, FileInfo _ = null)
-    {
-        DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(file.Directory.Parent.FullName, "zstd_decode"));
-        FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
-
-        using var processedStream = new DecompressionStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read));
-
-        DateTime start = DateTime.Now;
-        processedStream.CopyTo(File.Create(encodedFile.FullName));
-        return DateTime.Now - start;
+        public void MoveTo(string newId)
+        {
+            Identifier = newId;
+            string[] parts = newId.Split("-");
+            int row = int.Parse(parts[0]);
+            int col = int.Parse(parts[1]);
+        }
     }
 }

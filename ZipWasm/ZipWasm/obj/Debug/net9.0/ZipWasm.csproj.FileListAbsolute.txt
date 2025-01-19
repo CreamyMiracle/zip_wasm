@@ -32,7 +32,6 @@ D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\ZipWasm.AssemblyInfo.cs
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\ZipWasm.csproj.CoreCompileInputs.cache
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\ZipWasm.MvcApplicationPartsAssemblyInfo.cache
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
-D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\scopedcss\bundle\ZipWasm.styles.css
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\scopedcss\projectbundle\ZipWasm.bundle.scp.css
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\iibab4ngjb-khy4lop6wu.gz
@@ -80,8 +79,6 @@ D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\xazzo84jru-notf2xhcf
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\nnjobrd5h9-h1s4sie4z3.gz
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\12rsa3376l-63fj8s7r0e.gz
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\4l2fuzh3qd-0j3bgjxly4.gz
-D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\iw52y735aj-2ithm7hp6k.gz
-D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\89z4zd03qi-2ithm7hp6k.gz
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\staticwebassets.build.json
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\staticwebassets.development.json
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\staticwebassets.build.endpoints.json
@@ -119,3 +116,6 @@ D:\Dev\zip_wasm\ZipWasm\ZipWasm\bin\Debug\net9.0\Microsoft.JSInterop.dll
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\bin\Debug\net9.0\MudBlazor.dll
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\tzxjg6is5z-du7z45fy1o.gz
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\0wz98yz2xy-u9015k2po7.gz
+D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\ZipWasm.sourcelink.json
+D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\iw52y735aj-owkw6320zv.gz
+D:\Dev\zip_wasm\ZipWasm\ZipWasm\obj\Debug\net9.0\compressed\89z4zd03qi-owkw6320zv.gz

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tv3Y8N6iBzG7w3pzN3k74zddliTj0/3zikiiKQtBngs=",
+  "Hash": "keES5DFdrPzM1r/WgoEYIbkrX9Bi7o1dpj62JMGVtes=",
   "Source": "ZipWasm.Client",
   "BasePath": "/",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "3zojxxoouo",
-      "Integrity": "0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM=",
+      "Fingerprint": "0j29pl26uq",
+      "Integrity": "9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net9.0\\blazor.boot.json"
@@ -4420,8 +4420,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "w7nyoywwj9",
-      "Integrity": "9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=",
+      "Fingerprint": "6ih2ntcxnj",
+      "Integrity": "HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net9.0\\ZipWasm.Client.pdb"
@@ -4441,8 +4441,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "v2jkcb45xw",
-      "Integrity": "aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=",
+      "Fingerprint": "cdzw3gimpt",
+      "Integrity": "ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\webcil\\ZipWasm.Client.wasm"
@@ -5645,12 +5645,12 @@
       "OriginalItemSpec": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\System.Diagnostics.Debug.wasm"
     },
     {
-      "Identity": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-w7nyoywwj9.gz",
+      "Identity": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-6ih2ntcxnj.gz",
       "SourceId": "ZipWasm.Client",
       "SourceType": "Computed",
       "ContentRoot": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "_framework/ZipWasm.Client#[.{fingerprint=w7nyoywwj9}]!.pdb.gz",
+      "RelativePath": "_framework/ZipWasm.Client#[.{fingerprint=6ih2ntcxnj}]!.pdb.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -5659,8 +5659,8 @@
       "RelatedAsset": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "fj1srikb7q",
-      "Integrity": "y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=",
+      "Fingerprint": "yauby7cprd",
+      "Integrity": "KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.pdb"
@@ -6044,12 +6044,12 @@
       "OriginalItemSpec": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\Microsoft.Extensions.Configuration.Abstractions.wasm"
     },
     {
-      "Identity": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-v2jkcb45xw.gz",
+      "Identity": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-cdzw3gimpt.gz",
       "SourceId": "ZipWasm.Client",
       "SourceType": "Computed",
       "ContentRoot": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "_framework/ZipWasm.Client#[.{fingerprint=v2jkcb45xw}]!.wasm.gz",
+      "RelativePath": "_framework/ZipWasm.Client#[.{fingerprint=cdzw3gimpt}]!.wasm.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -6058,8 +6058,8 @@
       "RelatedAsset": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "hbbiu40t1y",
-      "Integrity": "zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=",
+      "Fingerprint": "fifxx986mp",
+      "Integrity": "x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.wasm"
@@ -8249,7 +8249,7 @@
       "OriginalItemSpec": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\dotnet.native.js"
     },
     {
-      "Identity": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\venpz7ykn9-3zojxxoouo.gz",
+      "Identity": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\venpz7ykn9-0j29pl26uq.gz",
       "SourceId": "ZipWasm.Client",
       "SourceType": "Computed",
       "ContentRoot": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\",
@@ -8263,8 +8263,8 @@
       "RelatedAsset": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\blazor.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "vxr7hb5h5d",
-      "Integrity": "zSnrI3pM/dyanGaN1j/nJ/QBaLFzSbQBAMkRsVOtLqc=",
+      "Fingerprint": "u63f967dm5",
+      "Integrity": "GhHywrFNhWWKg6oHtjAg9tXE1Kd6LbCIgIsRiFhsyB8=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\blazor.boot.json"
@@ -9389,11 +9389,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM=\""
+          "Value": "\"9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9403,13 +9403,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM="
+          "Value": "sha256-9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\venpz7ykn9-3zojxxoouo.gz",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\venpz7ykn9-0j29pl26uq.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -9428,11 +9428,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zSnrI3pM/dyanGaN1j/nJ/QBaLFzSbQBAMkRsVOtLqc=\""
+          "Value": "\"GhHywrFNhWWKg6oHtjAg9tXE1Kd6LbCIgIsRiFhsyB8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:01:59 GMT"
+          "Value": "Sun, 19 Jan 2025 18:20:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9452,19 +9452,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM=\""
+          "Value": "W/\"9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM="
+          "Value": "sha256-9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\venpz7ykn9-3zojxxoouo.gz",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\venpz7ykn9-0j29pl26uq.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9481,11 +9481,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zSnrI3pM/dyanGaN1j/nJ/QBaLFzSbQBAMkRsVOtLqc=\""
+          "Value": "\"GhHywrFNhWWKg6oHtjAg9tXE1Kd6LbCIgIsRiFhsyB8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:01:59 GMT"
+          "Value": "Sun, 19 Jan 2025 18:20:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9503,7 +9503,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zSnrI3pM/dyanGaN1j/nJ/QBaLFzSbQBAMkRsVOtLqc="
+          "Value": "sha256-GhHywrFNhWWKg6oHtjAg9tXE1Kd6LbCIgIsRiFhsyB8="
         }
       ]
     },
@@ -70735,7 +70735,7 @@
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.pdb",
+      "Route": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb",
       "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.pdb",
       "Selectors": [],
       "ResponseHeaders": [
@@ -70745,7 +70745,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19216"
+          "Value": "28564"
         },
         {
           "Name": "Content-Type",
@@ -70753,148 +70753,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
+          "Value": "\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.pdb",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-w7nyoywwj9.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000080893059"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "12361"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.pdb.gz",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-w7nyoywwj9.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "12361"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.v2jkcb45xw.wasm",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.wasm",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "14613"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -70904,168 +70767,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "v2jkcb45xw"
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/ZipWasm.Client.wasm"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.v2jkcb45xw.wasm",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-v2jkcb45xw.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000156739812"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6379"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "v2jkcb45xw"
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/ZipWasm.Client.wasm"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.v2jkcb45xw.wasm.gz",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-v2jkcb45xw.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6379"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "v2jkcb45xw"
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/ZipWasm.Client.wasm.gz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.w7nyoywwj9.pdb",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.pdb",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "19216"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "w7nyoywwj9"
+          "Value": "6ih2ntcxnj"
         },
         {
           "Name": "label",
@@ -71073,18 +70775,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
         }
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.w7nyoywwj9.pdb",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-w7nyoywwj9.gz",
+      "Route": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-6ih2ntcxnj.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000080893059"
+          "Quality": "0.000055224210"
         }
       ],
       "ResponseHeaders": [
@@ -71094,15 +70796,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12361"
+          "Value": "18107"
         },
         {
           "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -71122,13 +70824,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
+          "Value": "W/\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "w7nyoywwj9"
+          "Value": "6ih2ntcxnj"
         },
         {
           "Name": "label",
@@ -71136,13 +70838,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
         }
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.w7nyoywwj9.pdb.gz",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-w7nyoywwj9.gz",
+      "Route": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb.gz",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-6ih2ntcxnj.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -71151,7 +70853,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12361"
+          "Value": "18107"
         },
         {
           "Name": "Content-Type",
@@ -71159,11 +70861,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -71181,7 +70883,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "w7nyoywwj9"
+          "Value": "6ih2ntcxnj"
         },
         {
           "Name": "label",
@@ -71189,7 +70891,305 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE="
+          "Value": "sha256-KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.cdzw3gimpt.wasm",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.wasm",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "34581"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cdzw3gimpt"
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/ZipWasm.Client.wasm"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.cdzw3gimpt.wasm",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-cdzw3gimpt.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000071968334"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13894"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cdzw3gimpt"
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/ZipWasm.Client.wasm"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.cdzw3gimpt.wasm.gz",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-cdzw3gimpt.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13894"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cdzw3gimpt"
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/ZipWasm.Client.wasm.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.pdb",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\bin\\Debug\\net9.0\\wwwroot\\_framework\\ZipWasm.Client.pdb",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "28564"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.pdb",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-6ih2ntcxnj.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000055224210"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18107"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.pdb.gz",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\9k36885uvp-6ih2ntcxnj.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18107"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE="
         }
       ]
     },
@@ -71204,7 +71204,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "14613"
+          "Value": "34581"
         },
         {
           "Name": "Content-Type",
@@ -71212,11 +71212,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
+          "Value": "\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -71226,18 +71226,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
         }
       ]
     },
     {
       "Route": "_framework/ZipWasm.Client.wasm",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-v2jkcb45xw.gz",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-cdzw3gimpt.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000156739812"
+          "Quality": "0.000071968334"
         }
       ],
       "ResponseHeaders": [
@@ -71247,15 +71247,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6379"
+          "Value": "13894"
         },
         {
           "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -71275,19 +71275,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
+          "Value": "W/\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
         }
       ]
     },
     {
       "Route": "_framework/ZipWasm.Client.wasm.gz",
-      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-v2jkcb45xw.gz",
+      "AssetFile": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\obj\\Debug\\net9.0\\compressed\\d0q52b0duf-cdzw3gimpt.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -71296,7 +71296,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6379"
+          "Value": "13894"
         },
         {
           "Name": "Content-Type",
@@ -71304,11 +71304,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -71326,7 +71326,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k="
+          "Value": "sha256-x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU="
         }
       ]
     },

@@ -3,13 +3,13 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
-      "Route": "ZipWasm.2ithm7hp6k.styles.css",
+      "Route": "ZipWasm.owkw6320zv.styles.css",
       "AssetFile": "ZipWasm.styles.css.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000567214974"
+          "Quality": "0.001262626263"
         }
       ],
       "ResponseHeaders": [
@@ -27,7 +27,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1762"
+          "Value": "791"
         },
         {
           "Name": "Content-Type",
@@ -35,15 +35,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CIJ7WQao3iFE81C56ZfWVG9lX7z/Z+ZbRCl2bfphTIA=\""
+          "Value": "\"KiReh5ZpNUEhZacJHnHT87YBurROvXHDVL0bm0uYIDA=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q=\""
+          "Value": "W/\"KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 16:35:07 GMT"
+          "Value": "Sun, 19 Jan 2025 08:48:20 GMT"
         },
         {
           "Name": "Vary",
@@ -53,11 +53,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2ithm7hp6k"
+          "Value": "owkw6320zv"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q="
+          "Value": "sha256-KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo="
         },
         {
           "Name": "label",
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "Route": "ZipWasm.2ithm7hp6k.styles.css",
+      "Route": "ZipWasm.owkw6320zv.styles.css",
       "AssetFile": "ZipWasm.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -80,7 +80,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5961"
+          "Value": "2242"
         },
         {
           "Name": "Content-Type",
@@ -88,21 +88,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q=\""
+          "Value": "\"KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 16:35:07 GMT"
+          "Value": "Sun, 19 Jan 2025 08:48:20 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2ithm7hp6k"
+          "Value": "owkw6320zv"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q="
+          "Value": "sha256-KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo="
         },
         {
           "Name": "label",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "Route": "ZipWasm.2ithm7hp6k.styles.css.gz",
+      "Route": "ZipWasm.owkw6320zv.styles.css.gz",
       "AssetFile": "ZipWasm.styles.css.gz",
       "Selectors": [],
       "ResponseHeaders": [
@@ -129,7 +129,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1762"
+          "Value": "791"
         },
         {
           "Name": "Content-Type",
@@ -137,11 +137,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CIJ7WQao3iFE81C56ZfWVG9lX7z/Z+ZbRCl2bfphTIA=\""
+          "Value": "\"KiReh5ZpNUEhZacJHnHT87YBurROvXHDVL0bm0uYIDA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 16:35:07 GMT"
+          "Value": "Sun, 19 Jan 2025 08:48:20 GMT"
         },
         {
           "Name": "Vary",
@@ -151,11 +151,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2ithm7hp6k"
+          "Value": "owkw6320zv"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-CIJ7WQao3iFE81C56ZfWVG9lX7z/Z+ZbRCl2bfphTIA="
+          "Value": "sha256-KiReh5ZpNUEhZacJHnHT87YBurROvXHDVL0bm0uYIDA="
         },
         {
           "Name": "label",
@@ -170,7 +170,7 @@
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000567214974"
+          "Quality": "0.001262626263"
         }
       ],
       "ResponseHeaders": [
@@ -188,7 +188,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1762"
+          "Value": "791"
         },
         {
           "Name": "Content-Type",
@@ -196,15 +196,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CIJ7WQao3iFE81C56ZfWVG9lX7z/Z+ZbRCl2bfphTIA=\""
+          "Value": "\"KiReh5ZpNUEhZacJHnHT87YBurROvXHDVL0bm0uYIDA=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q=\""
+          "Value": "W/\"KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 16:35:07 GMT"
+          "Value": "Sun, 19 Jan 2025 08:48:20 GMT"
         },
         {
           "Name": "Vary",
@@ -214,7 +214,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q="
+          "Value": "sha256-KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo="
         }
       ]
     },
@@ -233,7 +233,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5961"
+          "Value": "2242"
         },
         {
           "Name": "Content-Type",
@@ -241,17 +241,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q=\""
+          "Value": "\"KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 16:35:07 GMT"
+          "Value": "Sun, 19 Jan 2025 08:48:20 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Zq76n47OOlXRTyrFELFLdzxblevhADU3bW7n/lSjs6Q="
+          "Value": "sha256-KPzhOaa2fxC4u/5QFZa9uFefv/mqAN1Wcddwou2ldEo="
         }
       ]
     },
@@ -274,7 +274,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1762"
+          "Value": "791"
         },
         {
           "Name": "Content-Type",
@@ -282,11 +282,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CIJ7WQao3iFE81C56ZfWVG9lX7z/Z+ZbRCl2bfphTIA=\""
+          "Value": "\"KiReh5ZpNUEhZacJHnHT87YBurROvXHDVL0bm0uYIDA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 16:35:07 GMT"
+          "Value": "Sun, 19 Jan 2025 08:48:20 GMT"
         },
         {
           "Name": "Vary",
@@ -296,7 +296,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-CIJ7WQao3iFE81C56ZfWVG9lX7z/Z+ZbRCl2bfphTIA="
+          "Value": "sha256-KiReh5ZpNUEhZacJHnHT87YBurROvXHDVL0bm0uYIDA="
         }
       ]
     },
@@ -58477,145 +58477,8 @@
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.pdb",
-      "AssetFile": "_framework/ZipWasm.Client.w7nyoywwj9.pdb",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "19216"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.pdb",
-      "AssetFile": "_framework/ZipWasm.Client.w7nyoywwj9.pdb.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000080893059"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "12361"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.pdb.gz",
-      "AssetFile": "_framework/ZipWasm.Client.w7nyoywwj9.pdb.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "12361"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.v2jkcb45xw.wasm",
-      "AssetFile": "_framework/ZipWasm.Client.v2jkcb45xw.wasm",
+      "Route": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb",
+      "AssetFile": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -58628,168 +58491,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "14613"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "v2jkcb45xw"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/ZipWasm.Client.wasm"
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.v2jkcb45xw.wasm",
-      "AssetFile": "_framework/ZipWasm.Client.v2jkcb45xw.wasm.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000156739812"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6379"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "v2jkcb45xw"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/ZipWasm.Client.wasm"
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.v2jkcb45xw.wasm.gz",
-      "AssetFile": "_framework/ZipWasm.Client.v2jkcb45xw.wasm.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6379"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "v2jkcb45xw"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k="
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/ZipWasm.Client.wasm.gz"
-        }
-      ]
-    },
-    {
-      "Route": "_framework/ZipWasm.Client.w7nyoywwj9.pdb",
-      "AssetFile": "_framework/ZipWasm.Client.w7nyoywwj9.pdb",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "19216"
+          "Value": "28564"
         },
         {
           "Name": "Content-Type",
@@ -58797,21 +58499,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
+          "Value": "\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "w7nyoywwj9"
+          "Value": "6ih2ntcxnj"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
         },
         {
           "Name": "label",
@@ -58820,13 +58522,13 @@
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.w7nyoywwj9.pdb",
-      "AssetFile": "_framework/ZipWasm.Client.w7nyoywwj9.pdb.gz",
+      "Route": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb",
+      "AssetFile": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000080893059"
+          "Quality": "0.000055224210"
         }
       ],
       "ResponseHeaders": [
@@ -58844,7 +58546,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12361"
+          "Value": "18107"
         },
         {
           "Name": "Content-Type",
@@ -58852,15 +58554,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4=\""
+          "Value": "W/\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Vary",
@@ -58870,11 +58572,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "w7nyoywwj9"
+          "Value": "6ih2ntcxnj"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9HWldyBupYCVKPSxcBv8kNKeVrw8hZaks/IPYD+Z/C4="
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
         },
         {
           "Name": "label",
@@ -58883,8 +58585,8 @@
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.w7nyoywwj9.pdb.gz",
-      "AssetFile": "_framework/ZipWasm.Client.w7nyoywwj9.pdb.gz",
+      "Route": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb.gz",
+      "AssetFile": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -58901,7 +58603,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12361"
+          "Value": "18107"
         },
         {
           "Name": "Content-Type",
@@ -58909,11 +58611,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE=\""
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Vary",
@@ -58923,11 +58625,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "w7nyoywwj9"
+          "Value": "6ih2ntcxnj"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-y3mAB8Otz3soMHUDrV0uTyjWFJRyylejRiYHt3pveBE="
+          "Value": "sha256-KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE="
         },
         {
           "Name": "label",
@@ -58936,8 +58638,169 @@
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.wasm",
-      "AssetFile": "_framework/ZipWasm.Client.v2jkcb45xw.wasm",
+      "Route": "_framework/ZipWasm.Client.cdzw3gimpt.wasm",
+      "AssetFile": "_framework/ZipWasm.Client.cdzw3gimpt.wasm",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "34581"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cdzw3gimpt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/ZipWasm.Client.wasm"
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.cdzw3gimpt.wasm",
+      "AssetFile": "_framework/ZipWasm.Client.cdzw3gimpt.wasm.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000071968334"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13894"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cdzw3gimpt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/ZipWasm.Client.wasm"
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.cdzw3gimpt.wasm.gz",
+      "AssetFile": "_framework/ZipWasm.Client.cdzw3gimpt.wasm.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13894"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cdzw3gimpt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU="
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/ZipWasm.Client.wasm.gz"
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.pdb",
+      "AssetFile": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -58950,36 +58813,36 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "14613"
+          "Value": "28564"
         },
         {
           "Name": "Content-Type",
-          "Value": "application/wasm"
+          "Value": "application/octet-stream"
         },
         {
           "Name": "ETag",
-          "Value": "\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
+          "Value": "\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:36 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
         }
       ]
     },
     {
-      "Route": "_framework/ZipWasm.Client.wasm",
-      "AssetFile": "_framework/ZipWasm.Client.v2jkcb45xw.wasm.gz",
+      "Route": "_framework/ZipWasm.Client.pdb",
+      "AssetFile": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000156739812"
+          "Quality": "0.000055224210"
         }
       ],
       "ResponseHeaders": [
@@ -58997,23 +58860,23 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6379"
+          "Value": "18107"
         },
         {
           "Name": "Content-Type",
-          "Value": "application/wasm"
+          "Value": "application/octet-stream"
         },
         {
           "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y=\""
+          "Value": "W/\"HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Vary",
@@ -59023,13 +58886,150 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aUqkcpoZpRii/DlSf3bSq0Ff+yXr5SdYXtPSvGbLp7Y="
+          "Value": "sha256-HtCB8fe4AShaLx3HylgMHzlorD26TdVrfbc6W6pfYGY="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.pdb.gz",
+      "AssetFile": "_framework/ZipWasm.Client.6ih2ntcxnj.pdb.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18107"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KkxSWIwa9cF45X+YFuxU9YCN4qkNc0xDitPym4+y6CE="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.wasm",
+      "AssetFile": "_framework/ZipWasm.Client.cdzw3gimpt.wasm",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "34581"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/ZipWasm.Client.wasm",
+      "AssetFile": "_framework/ZipWasm.Client.cdzw3gimpt.wasm.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000071968334"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13894"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ED50F+vyZKRc5TIg0oRN9DCNQ/gL9r9HS6fb2IaenQQ="
         }
       ]
     },
     {
       "Route": "_framework/ZipWasm.Client.wasm.gz",
-      "AssetFile": "_framework/ZipWasm.Client.v2jkcb45xw.wasm.gz",
+      "AssetFile": "_framework/ZipWasm.Client.cdzw3gimpt.wasm.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -59046,7 +59046,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6379"
+          "Value": "13894"
         },
         {
           "Name": "Content-Type",
@@ -59054,11 +59054,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k=\""
+          "Value": "\"x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         },
         {
           "Name": "Vary",
@@ -59068,7 +59068,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zbd+Rgj4raFt8nuIkr+tcq5fyTYtYJsZYn/Ow+ere5k="
+          "Value": "sha256-x1HN8Fr4mLROJK1tbpkedomQOQWcckQu34mGMHEtdZU="
         }
       ]
     },
@@ -59393,17 +59393,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM=\""
+          "Value": "\"9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:45:37 GMT"
+          "Value": "Sun, 19 Jan 2025 18:25:27 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM="
+          "Value": "sha256-9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY="
         }
       ]
     },
@@ -59440,15 +59440,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zSnrI3pM/dyanGaN1j/nJ/QBaLFzSbQBAMkRsVOtLqc=\""
+          "Value": "\"GhHywrFNhWWKg6oHtjAg9tXE1Kd6LbCIgIsRiFhsyB8=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM=\""
+          "Value": "W/\"9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:01:59 GMT"
+          "Value": "Sun, 19 Jan 2025 18:20:29 GMT"
         },
         {
           "Name": "Vary",
@@ -59458,7 +59458,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0ZVXLAHu89aCbSJ1NxCxa9KQMvRtLEcWk54HOOpGdhM="
+          "Value": "sha256-9L1PcMHIEWmqVRLG3/cctRGAt4Gz9ZFKpe6VSWbtbcY="
         }
       ]
     },
@@ -59489,11 +59489,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zSnrI3pM/dyanGaN1j/nJ/QBaLFzSbQBAMkRsVOtLqc=\""
+          "Value": "\"GhHywrFNhWWKg6oHtjAg9tXE1Kd6LbCIgIsRiFhsyB8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 18 Jan 2025 22:01:59 GMT"
+          "Value": "Sun, 19 Jan 2025 18:20:29 GMT"
         },
         {
           "Name": "Vary",
@@ -59503,7 +59503,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zSnrI3pM/dyanGaN1j/nJ/QBaLFzSbQBAMkRsVOtLqc="
+          "Value": "sha256-GhHywrFNhWWKg6oHtjAg9tXE1Kd6LbCIgIsRiFhsyB8="
         }
       ]
     },
