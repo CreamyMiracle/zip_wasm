@@ -6,6 +6,7 @@ D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.cs
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\javascript.js
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
@@ -45,6 +46,7 @@ D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\css\bootstrap-utiliti
 D:\Dev\zip_wasm\ZipWasm\ZipWasm\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\app.css
 wwwroot\favicon.png
+wwwroot\javascript.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css

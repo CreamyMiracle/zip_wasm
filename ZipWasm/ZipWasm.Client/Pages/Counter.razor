@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using System.IO.Compression
+@using System.IO.Compression;
 @rendermode InteractiveWebAssembly
 @using System.Drawing;
 @using System.IO.Compression;
@@ -9,52 +9,45 @@
 @using VCDiff.Decoders;
 @using VCDiff.Encoders;
 @using VCDiff.Includes;
-@using ZipWasm.Client.Helpers
+@using ZipWasm.Client.Helpers;
 @using ZstdNet;
+@inject IJSRuntime JSRuntime;
 
 <MudPopoverProvider />
 
-<MudDropContainer T="DropItem" @ref="_dropContainer" Items="_items" CanDropClass="mud-border-info" NoDropClass="mud-border-error" CanDrop="@((item,identifier) => item.Type != DropItem.ItemType.Result && _items.Count(x => x.Identifier == identifier ) == 0)" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="border-2 border-solid mud-border-lines-default">
+<MudDropContainer T="DropItem" @ref="_dropContainer" Items="_items.Values" CanDropClass="mud-border-info" NoDropClass="mud-border-error" CanDrop="@((item, rowCol ) => CanDrop(item, rowCol))" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated">
     <ChildContent>
-        @for (int r = 0; r < 8; r++)
+        @for (int r = 0; r < 10; r++)
         {
             var row = r.ToString();
             <div class="d-flex">
-                @for (int c = 0; c < 15; c++)
+                @for (int c = 0; c < 20; c++)
                 {
                     var col = c.ToString();
-                    <MudMenu ActivationEvent="@MouseEvent.RightClick">
+                    <MudMenu ActivationEvent="@MouseEvent.LeftClick" Dense="true">
                         <ActivatorContent>
-                            <MudDropZone T="DropItem" Identifier="@($"{row}-{col}")" DraggingClass="mud-theme-success" Class="d-flex justify-center align-center border-2 border-solid docs-gray-bg mud-border-lines-default" Style="height:64px;width:64px;">
+                            <MudDropZone T="DropItem" Identifier="@($"{row}-{col}")" DraggingClass="mud-theme-success" Class="@GetClass($"{row}-{col}")" Style="height:80px;width:80px;">
 
                             </MudDropZone>
                         </ActivatorContent>
                         <ChildContent>
-                            <MudMenuItem>
-                                <MudFileUpload T="IReadOnlyList<IBrowserFile>" FilesChanged="@(param => UploadFiles(param, $"{row}-{col}"))">
+                            <MudMenuItem hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Upload)">
+                                <MudFileUpload T="IReadOnlyList<IBrowserFile>" MaximumFileCount="@int.MaxValue" FilesChanged="@(param => UploadFiles(param, $"{row}-{col}"))">
                                     <ActivatorContent>
                                         <MudButton Color="MudBlazor.Color.Dark">Upload</MudButton>
                                     </ActivatorContent>
                                 </MudFileUpload>
                             </MudMenuItem>
-                            <MudMenuItem>
-                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.GZipEncode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Gzip</MudButton>
-                            </MudMenuItem>
-                            <MudMenuItem>
-                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.DeflateEncode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Deflate</MudButton>
-                            </MudMenuItem>
-                            <MudMenuItem>
-                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.VCDiffEncode, $"{row}-{col}", @Icons.Material.Rounded.SwapVerticalCircle, DropItem.ItemType.Diff))">Vcdiff</MudButton>
-                            </MudMenuItem>
-                            <MudMenuItem>
-                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.GZipDecode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Un-Gzip</MudButton>
-                            </MudMenuItem>
-                            <MudMenuItem>
-                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.DeflateDecode, $"{row}-{col}", @Icons.Material.TwoTone.ArrowCircleRight, DropItem.ItemType.Compress))">Un-Deflate</MudButton>
-                            </MudMenuItem>
-                            <MudMenuItem>
-                                <MudButton Color="MudBlazor.Color.Dark" OnClick="@(_ => AddFunc(_fileOperations.VCDiffDecode, $"{row}-{col}", @Icons.Material.Rounded.SwapVerticalCircle, DropItem.ItemType.Diff))">Un-Vcdiff</MudButton>
-                            </MudMenuItem>
+                            <MudMenuItem Label="Copy" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Copy)" OnClick="@(_ => Copy(int.Parse(row), int.Parse(col)))" />
+                            <MudMenuItem Label="Paste" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Paste)" OnClick="@(_ => Paste(int.Parse(row), int.Parse(col)))" />
+                            <MudMenuItem Label="Gzip" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Process)" OnClick="@(_ => AddFunc(_fileOperations.Gzip, $"{row}-{col}", @Icons.Custom.Uncategorized.Empty, DropItem.ItemType.Compress))" />
+                            <MudMenuItem Label="Deflate" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Process)" OnClick="@(_ => AddFunc(_fileOperations.Deflate, $"{row}-{col}", @Icons.Custom.Uncategorized.Empty, DropItem.ItemType.Compress))" />
+                            <MudMenuItem Label="Diff" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Process)" OnClick="@(_ => AddFunc(_fileOperations.Diff, $"{row}-{col}", @Icons.Custom.Uncategorized.Empty, DropItem.ItemType.Diff))" />
+                            <MudMenuItem Label="Un-Gzip" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Process)" OnClick="@(_ => AddFunc(_fileOperations.Un_Gzip, $"{row}-{col}", @Icons.Custom.Uncategorized.Empty, DropItem.ItemType.Compress))" />
+                            <MudMenuItem Label="Un-Deflate" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Process)" OnClick="@(_ => AddFunc(_fileOperations.Un_Deflate, $"{row}-{col}", @Icons.Custom.Uncategorized.Empty, DropItem.ItemType.Compress))" />
+                            <MudMenuItem Label="Un-Diff" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Process)" OnClick="@(_ => AddFunc(_fileOperations.Un_Diff, $"{row}-{col}", @Icons.Custom.Uncategorized.Empty, DropItem.ItemType.Diff))" />
+                            <MudMenuItem Label="Download" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Download)" OnClick="@(_ => DownloadFiles(int.Parse(row), int.Parse(col)))" />
+                            <MudMenuItem Label="Delete" hidden="@IsMenuItemHidden($"{row}-{col}", MenuFunction.Delete)" OnClick="@(_ => DeleteItemAt($"{row}-{col}"))" />
                         </ChildContent>
                     </MudMenu>
                 }
@@ -65,11 +58,14 @@
         <div class="d-flex justify-center align-center flex-grow-1">
             <MudTooltip>
                 <ChildContent>
-                    <MudIcon Icon="@context.Icon" Color="@context.Color" Size="MudBlazor.Size.Medium" />
+                    <MudBadge Overlap="false" Bordered="false" Content="@(context.Order == null ? "" : context.Order)" Color="@context.Color" style="height: 100%; width: 100%;">
+                        <MudText style="height: 100%; width: 100%;" Typo="Typo.body2">@GetInfo(context)</MudText>
+                    </MudBadge>
                 </ChildContent>
                 <TooltipContent>
-                    <MudText Typo="Typo.body2">@GetDirSize(context)</MudText>
                     <MudText Typo="Typo.body2">@GetInfo(context)</MudText>
+                    <MudText Typo="Typo.body2">@GetDirSize(context)</MudText>
+                    <MudText Typo="Typo.body2">@GetRatio(context)</MudText>
                 </TooltipContent>
             </MudTooltip>
         </div>
@@ -77,9 +73,119 @@
 </MudDropContainer>
 
 @code {
+    public enum MenuFunction
+    {
+        Upload,
+        Process,
+        Delete,
+        Download,
+        Copy,
+        Paste,
+    }
+
+    private string GetClass(string rowCol)
+    {
+        string inputClass = "d-flex justify-center align-center border-2 border-solid docs-gray-bg border-dashed";
+        string outputClass = "d-flex justify-center align-center border-2 border-solid docs-gray-bg border-dashed mud-border-success";
+        string normalClass = "d-flex justify-center align-center border-2 border-solid docs-gray-bg mud-border-lines-default";
+
+        if (IsDiffInputBox(rowCol) != null)
+        {
+            return inputClass;
+        }
+
+        if (IsCompressInputBox(rowCol) != null)
+        {
+            return inputClass;
+        }
+
+        if (IsResultBox(rowCol) != null)
+        {
+            return outputClass;
+        }
+
+        return normalClass;
+    }
+
+    private DropItem? IsResultBox(string rowCol)
+    {
+        var split = DropItem.RowCol(rowCol);
+        int row = split.Item1;
+        int col = split.Item2;
+
+        DropItem? output = GetItemAt(row, col - 1);
+        if (output != null && (output.Type == DropItem.ItemType.Compress || output.Type == DropItem.ItemType.Diff))
+        {
+            return output;
+        }
+
+        return null;
+    }
+
+    private DropItem? IsDiffInputBox(string rowCol)
+    {
+        var split = DropItem.RowCol(rowCol);
+        int row = split.Item1;
+        int col = split.Item2;
+
+        DropItem? diffSource = GetItemAt(row + 1, col);
+        if (diffSource != null && diffSource.Type == DropItem.ItemType.Diff)
+        {
+            return diffSource;
+        }
+
+        DropItem? diffTarget = GetItemAt(row - 1, col);
+        if (diffTarget != null && diffTarget.Type == DropItem.ItemType.Diff)
+        {
+            return diffTarget;
+        }
+
+        return null;
+    }
+
+    private DropItem? IsCompressInputBox(string rowCol)
+    {
+        var split = DropItem.RowCol(rowCol);
+        int row = split.Item1;
+        int col = split.Item2;
+
+        DropItem? compressSource = GetItemAt(row, col + 1);
+        if (compressSource != null && compressSource.Type == DropItem.ItemType.Compress)
+        {
+            return compressSource;
+        }
+
+        return null;
+    }
+
+    private bool CanDrop(DropItem item, string rowCol)
+    {
+        bool freeBox = !_items.ContainsKey(rowCol) && item.Type != DropItem.ItemType.Result;
+        DropItem? result = IsResultBox(rowCol);
+
+        if (item.Type == DropItem.ItemType.Upload)
+        {
+            return freeBox && result == null;
+        }
+
+        if (item.Type == DropItem.ItemType.Diff || item.Type == DropItem.ItemType.Compress)
+        {
+            DropItem? diff = IsDiffInputBox(rowCol);
+            DropItem? compress = IsCompressInputBox(rowCol);
+            if (item == diff || item == compress || item == result)
+            {
+                return true;
+            }
+
+            return freeBox && diff == null && compress == null && result == null;
+        }
+
+        return freeBox;
+    }
+
     private FileOperations _fileOperations = new FileOperations();
     private MudDropContainer<DropItem> _dropContainer;
-    private HashSet<string> directories = new HashSet<string>();
+    private DropItem? _copiedItem;
 
     private void EvaluateFunc(DropItem funcItem)
     {
@@ -88,12 +194,18 @@
             return;
         }
 
-        Queue<string> inputIds = funcItem.GetInputIds();
+        DateTime start = DateTime.Now;
+        HashSet<string> inputIds = funcItem.InputIds;
+        List<DropItem> inputItems = new();
+        foreach (string inputId in inputIds)
+        {
+            if (_items.TryGetValue(inputId, out DropItem? input))
+            {
+                inputItems.Add(input);
+            }
+        }
 
-        var inputItems = _items.Where(other => inputIds.Contains(other.Identifier)).ToList();
-
-        string resultId = funcItem.GetResultId();
-        RemoveResult(resultId);
+        // RemoveResult(funcItem.ResultId);
 
         // Evaluate
         if (inputItems != null)
@@ -106,12 +218,12 @@
                     DirectoryInfo inputDir = new DirectoryInfo(inputItem.Path);
                     string resultPath = null;
 
-                    KeyValuePair<string, TimeSpan> res = funcItem.Func.Invoke(inputDir, null);
+                    KeyValuePair<string, Result> res = funcItem.Func.Invoke(inputDir, null);
                     resultPath = res.Key;
 
                     if (resultPath != null)
                     {
-                        AddResult(resultPath, resultId);
+                        AddResult(resultPath, funcItem.ResultId);
                     }
                 }
             }
@@ -128,12 +240,12 @@
                     DirectoryInfo inputDir2 = new DirectoryInfo(inputItem2.Path);
                     string resultPath = null;
 
-                    KeyValuePair<string, TimeSpan> res = funcItem.Func.Invoke(inputDir1, inputDir2);
+                    KeyValuePair<string, Result> res = funcItem.Func.Invoke(inputDir1, inputDir2);
                     resultPath = res.Key;
 
                     if (resultPath != null)
                     {
-                        AddResult(resultPath, resultId);
+                        AddResult(resultPath, funcItem.ResultId);
                     }
                 }
             }
@@ -143,35 +255,137 @@
     private DropItem? GetItemAt(int row, int col)
     {
         string resultId = string.Format("{0}-{1}", row, col);
-        return _items.Where(item => item.Identifier == resultId).FirstOrDefault();
+        _items.TryGetValue(resultId, out DropItem? item);
+        return item;
+    }
+
+    private async Task Copy(int row, int col)
+    {
+        _copiedItem = GetItemAt(row, col);
+    }
+
+    private async Task Paste(int row, int col)
+    {
+        string rowCol = string.Format("{0}-{1}", row, col);
+        DropItem? item = GetItemAt(row, col);
+        if (item == null && _copiedItem != null)
+        {
+            if (_copiedItem.Type == DropItem.ItemType.Result)
+            {
+                AddUpload(_copiedItem.Path, rowCol);
+            }
+            else
+            {
+                DropItem result = new DropItem(rowCol, _copiedItem, _fileOperations);
+                _items.Add(result.Identifier, result);
+                EvaluateAll();
+            }  
+        }
+    }
+
+    private async Task DeleteItemAt(string rowCol)
+    {
+        _items.Remove(rowCol);
+        EvaluateAll();
+    }
+
+    private bool IsMenuItemHidden(string rowCol, MenuFunction func)
+    {
+        var split = DropItem.RowCol(rowCol);
+        int row = split.Item1;
+        int col = split.Item2;
+
+        DropItem? item = GetItemAt(row, col);
+
+        // No item at present
+        if (item == null)
+        {
+            if (func == MenuFunction.Upload)
+            {
+                return false;
+            }
+            if (func == MenuFunction.Process)
+            {
+                return false;
+            }
+            if (func == MenuFunction.Delete)
+            {
+                return true;
+            }
+            if (func == MenuFunction.Download)
+            {
+                return true;
+            }
+            if (func == MenuFunction.Paste && _copiedItem != null)
+            {
+                return false;
+            }
+            if (func == MenuFunction.Copy)
+            {
+                return true;
+            }
+        }
+        // Item present
+        else
+        {
+            if (func == MenuFunction.Upload)
+            {
+                return true;
+            }
+            if (func == MenuFunction.Process)
+            {
+                return true;
+            }
+            if (func == MenuFunction.Delete)
+            {
+                if (item.Type == DropItem.ItemType.Result)
+                {
+                    return true;
+                }
+                return false;
+            }
+            if (func == MenuFunction.Download)
+            {
+                if (item.Type == DropItem.ItemType.Result || item.Type == DropItem.ItemType.Upload)
+                {
+                    return false;
+                }
+                return true;
+            }
+            if (func == MenuFunction.Paste)
+            {
+                return true;
+            }
+            if (func == MenuFunction.Copy)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private string GetRatio(DropItem item)
+    {
+        if (item.Type == DropItem.ItemType.Compress || item.Type == DropItem.ItemType.Diff)
+        {
+            (int, int) rowCol = DropItem.RowCol(item.Identifier);
+            var result = GetItemAt(rowCol.Item1, rowCol.Item2 + 1);
+            if (result != null)
+            {
+                Result res = _fileOperations.GetResult(result.Path);
+                return Math.Round(res.Ratio * 100, 1) + "%";
+            }
+        }
+        return "";
     }
 
     private string GetInfo(DropItem item)
     {
         if (item.Type == DropItem.ItemType.Compress || item.Type == DropItem.ItemType.Diff)
         {
-            (int, int) rowCol = DropItem.RowCol(item.Identifier);
-            var result = GetItemAt(rowCol.Item1, rowCol.Item2 + 1);
-            string dur = "";
-            if (result != null)
-            {
-                dur = " " + _fileOperations.GetDuration(result.Path);
-            }
-            return item.Func.Method.Name + dur;
+            return item.Func.Method.Name;
         }
-        else
-        {
-            return "";
-        }
-    }
-
-    private string GetDirSize(DropItem item)
-    {
-        if (item.Type == DropItem.ItemType.Compress || item.Type == DropItem.ItemType.Diff)
-        {
-            return "";
-        }
-        else
+        else if (item.Type == DropItem.ItemType.Upload)
         {
             if (string.IsNullOrEmpty(item.Path))
             {
@@ -180,68 +394,104 @@
 
             DirectoryInfo dir = new DirectoryInfo(item.Path);
             long dirSize = dir.EnumerateFiles("*", SearchOption.TopDirectoryOnly).Sum(file => file.Length);
-            return Math.Round(FileOperations.ToSize(dirSize, FileOperations.SizeUnit.MB), 1).ToString()  + "MB";
+            return FileOperations.ConvertBytesToReadableUnit(dirSize);
+        }
+        else if (item.Type == DropItem.ItemType.Result)
+        {
+            if (string.IsNullOrEmpty(item.Path))
+            {
+                return "N/A";
+            }
+
+            Result res = _fileOperations.GetResult(item.Path);
+
+            return FileOperations.ConvertBytesToReadableUnit(res.Size);
+        }
+
+        return "ERR";
+    }
+
+    private string GetDirSize(DropItem item)
+    {
+        if (item.Type == DropItem.ItemType.Compress || item.Type == DropItem.ItemType.Diff)
+        {
+            (int, int) rowCol = DropItem.RowCol(item.Identifier);
+            var result = GetItemAt(rowCol.Item1, rowCol.Item2 + 1);
+            string dur = "";
+            if (result != null)
+            {
+                Result res = _fileOperations.GetResult(result.Path);
+                dur = " " + FileOperations.FormatTimeSpan(res.Duration);
+            }
+            return dur;
+        }
+        else
+        {
+            return item.Path;
         }
     }
 
-    private void AddFunc(Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, TimeSpan>> func, string rowCol, string icon, DropItem.ItemType type)
+    private async Task DownloadFiles(int row, int col)
     {
-        var item = _items.Where(item => item.Identifier == rowCol).FirstOrDefault();
-        if (item != null)
+        DropItem? item = GetItemAt(row, col);
+        if (item == null || item.Path == null)
         {
-            _items.Remove(item);
+            return;
         }
+
+        DirectoryInfo dir = new DirectoryInfo(item.Path);
+        foreach (FileInfo file in dir.GetFiles())
+        {
+            // Encode content as a Base64 string
+            using var streamRef = new DotNetStreamReference(stream: file.OpenRead());
+
+            // Invoke the JavaScript function
+            await JSRuntime.InvokeVoidAsync("downloadFileFromStream", file.Name, streamRef);
+        }
+    }
+
+    private async Task AddFunc(Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, Result>> func, string rowCol, string icon, DropItem.ItemType type)
+    {
+        _items.Remove(rowCol);
 
         RemoveResult(rowCol);
 
-        DropItem newItem = new DropItem(type, icon, rowCol, null, func);
-        _items.Add(newItem);
+        DropItem newItem = new DropItem(type, icon, rowCol, null, func, _fileOperations);
+        _items.Add(newItem.Identifier, newItem);
 
         EvaluateAll();
     }
 
     private void AddResult(string? path, string newRowCol)
     {
-        var newItem = _items.Where(item => item.Identifier == newRowCol).FirstOrDefault();
-        if (newItem != null)
-        {
-            _items.Remove(newItem);
-        }
+        _items.Remove(newRowCol);
 
-        DropItem result = new DropItem(DropItem.ItemType.Result, @Icons.Material.TwoTone.InsertDriveFile, newRowCol, path, null);
-        _items.Add(result);
-
-        _dropContainer.Refresh();
+        DropItem result = new DropItem(DropItem.ItemType.Result, @Icons.Material.TwoTone.InsertDriveFile, newRowCol, path, null, _fileOperations);
+        _items.Add(result.Identifier, result);
     }
 
     private void RemoveResult(string prevRowCol)
     {
-        var prevItem = _items.Where(item => item.Identifier == prevRowCol).FirstOrDefault();
+        _items.TryGetValue(prevRowCol, out DropItem? prevItem);
         if (prevItem != null && prevItem.Type == DropItem.ItemType.Result)
         {
-            _items.Remove(prevItem);
+            _items.Remove(prevItem.Identifier);
         }
-
-        _dropContainer.Refresh();
     }
 
     private void AddUpload(string path, string rowCol)
     {
-        var item = _items.Where(item => item.Identifier == rowCol).FirstOrDefault();
-        if (item != null)
-        {
-            _items.Remove(item);
-        }
-        _items.Add(new DropItem(DropItem.ItemType.Upload, @Icons.Material.TwoTone.AttachFile, rowCol, path, null));
+        _items.Remove(rowCol);
+
+        DropItem newItem = new DropItem(DropItem.ItemType.Upload, @Icons.Material.TwoTone.AttachFile, rowCol, path, null, _fileOperations);
+        _items.Add(newItem.Identifier, newItem);
 
         EvaluateAll();
     }
 
     private async Task UploadFiles(IReadOnlyList<IBrowserFile> files, string rowCol)
     {
-        string dirPath = Path.Combine(Environment.CurrentDirectory, directories.Count.ToString(), "upload");
-        DirectoryInfo dir = Directory.CreateDirectory(dirPath);
-        directories.Add(dir.FullName);
+        DirectoryInfo dir = _fileOperations.GetNextDir();
         foreach (var file in files)
         {
             string filePath = Path.Combine(dir.FullName, file.Name);
@@ -251,27 +501,33 @@
         AddUpload(dir.FullName, rowCol);
     }
 
-    private void ItemUpdated(MudItemDropInfo<DropItem> dropItem)
+    private async Task ItemUpdated(MudItemDropInfo<DropItem> dropItem)
     {
+        _items.Remove(dropItem.Item.Identifier);
         dropItem.Item.MoveTo(dropItem.DropzoneIdentifier);
+        _items.Add(dropItem.Item.Identifier, dropItem.Item);
 
         EvaluateAll();
     }
 
     private void EvaluateAll()
     {
+        DateTime start = DateTime.Now;
         DeleteAllResults();
         bool allEvaluated = false;
 
+        int i = 0;
         while (!allEvaluated)
         {
-            var oldItems = new List<DropItem>(_items);
-            foreach (var item in oldItems)
+            i++;
+            int count = _items.Count();
+            var funcItems = _items.Values.Where(i => i.Type == DropItem.ItemType.Diff || i.Type == DropItem.ItemType.Compress).ToList();
+            foreach (var item in funcItems)
             {
                 EvaluateFunc(item);
             }
             // No new items have appeared during this loop
-            allEvaluated = _items.Count() == oldItems.Count();
+            allEvaluated = count == _items.Count();
         }
 
         _dropContainer.Refresh();
@@ -279,15 +535,14 @@
 
     private void DeleteAllResults()
     {
-        var temp = new List<DropItem>(_items);
-        foreach (var item in temp)
+        DateTime start = DateTime.Now;
+        foreach (var item in _items.Values.ToList())
         {
             if (item.Type == DropItem.ItemType.Result)
             {
-                _items.Remove(item);
+                _items.Remove(item.Identifier);
             }
         }
-        _dropContainer.Refresh();
     }
 
     private bool MissingInput(DropItem item)
@@ -300,12 +555,13 @@
         var rowCol = DropItem.RowCol(item.Identifier);
         var row = rowCol.Item1;
         var col = rowCol.Item2;
-        var inputItem = _items.Where(other => other.Identifier == string.Format("{0}-{1}", row, col - 1)).FirstOrDefault();
 
-        return inputItem == null;
+        _items.TryGetValue(string.Format("{0}-{1}", row, col - 1), out DropItem? inputItem);
+
+        return inputItem == default(DropItem);
     }
 
-    private List<DropItem> _items = new();
+    private Dictionary<string, DropItem> _items = new();
 
     public class DropItem
     {
@@ -316,7 +572,7 @@
             Upload,
             Result
         }
-        public DropItem(ItemType type, string icon, string id, string path, Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, TimeSpan>> func)
+        public DropItem(ItemType type, string icon, string id, string path, Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, Result>> func, FileOperations oper)
         {
             Identifier = id;
             Type = type;
@@ -324,6 +580,20 @@
             Path = path;
             Func = func;
             SetColor();
+            SetInputs();
+            Order = oper.GetDirOrder(Path);
+        }
+
+        public DropItem(string id, DropItem other, FileOperations oper)
+        {
+            Identifier = id;
+            Type = other.Type;
+            Icon = other.Icon;
+            Path = other.Path;
+            Func = other.Func;
+            SetColor();
+            SetInputs();
+            Order = oper.GetDirOrder(Path);
         }
 
         private void SetColor()
@@ -334,10 +604,10 @@
                     Color = MudBlazor.Color.Info;
                     break;
                 case ItemType.Compress:
-                    Color = MudBlazor.Color.Dark;
+                    Color = MudBlazor.Color.Transparent;
                     break;
                 case ItemType.Diff:
-                    Color = MudBlazor.Color.Dark;
+                    Color = MudBlazor.Color.Transparent;
                     break;
                 case ItemType.Result:
                     Color = MudBlazor.Color.Success;
@@ -347,38 +617,33 @@
 
         public ItemType Type { get; private set; }
         public string Icon { get; private init; }
-        public Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, TimeSpan>> Func { get; private set; }
+        public Func<DirectoryInfo, DirectoryInfo, KeyValuePair<string, Result>> Func { get; private set; }
         public MudBlazor.Color Color { get; private set; }
         public string Identifier { get; set; }
         public string Path { get; set; }
+        public HashSet<string> InputIds { get; private set; } = new();
+        public string ResultId { get; private set; }
+        public int? Order { get; init; }
 
-        public Queue<string> GetInputIds()
+        private void SetInputs()
         {
             var rowCol = DropItem.RowCol(Identifier);
             var row = rowCol.Item1;
             var col = rowCol.Item2;
 
-            var queue = new Queue<string>();
             if (Type == ItemType.Compress)
             {
-                queue.Enqueue(string.Format("{0}-{1}", row, col - 1));
+                InputIds.Clear();
+                InputIds.Add(string.Format("{0}-{1}", row, col - 1));
+                ResultId = string.Format("{0}-{1}", row, col + 1);
             }
             else if (Type == ItemType.Diff)
             {
-                queue.Enqueue(string.Format("{0}-{1}", row - 1, col));
-                queue.Enqueue(string.Format("{0}-{1}", row + 1, col));
+                InputIds.Clear();
+                InputIds.Add(string.Format("{0}-{1}", row - 1, col));
+                InputIds.Add(string.Format("{0}-{1}", row + 1, col));
+                ResultId = string.Format("{0}-{1}", row, col + 1);
             }
-
-            return queue;
-        }
-
-        public string GetResultId()
-        {
-            var rowCol = DropItem.RowCol(Identifier);
-            var row = rowCol.Item1;
-            var col = rowCol.Item2;
-
-            return string.Format("{0}-{1}", row, col + 1);
         }
 
         public static (int, int) RowCol(string rowCol)
@@ -395,6 +660,7 @@
             string[] parts = newId.Split("-");
             int row = int.Parse(parts[0]);
             int col = int.Parse(parts[1]);
+            SetInputs();
         }
     }
 }

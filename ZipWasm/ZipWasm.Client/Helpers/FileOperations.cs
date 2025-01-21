@@ -1,4 +1,5 @@
-﻿using System.IO.Compression;
+﻿using System;
+using System.IO.Compression;
 using System.Reflection;
 using System.Text;
 using VCDiff.Decoders;
@@ -10,9 +11,55 @@ using static ZipWasm.Client.Helpers.FileOperations;
 
 namespace ZipWasm.Client.Helpers
 {
+    public class Result
+    {
+        public Result(TimeSpan dur, bool success, double ratio, long size)
+        {
+            Duration = dur;
+            Success = success;
+            Ratio = ratio;
+            Size = size;
+        }
+
+        public double Ratio { get; set; }
+        public bool Success { get; set; }
+        public TimeSpan Duration { get; set; }
+        public long Size { get; set; }
+
+        public static Result None()
+        {
+            return new Result(TimeSpan.Zero, false, 0, 0);
+        }
+    }
+
     public class FileOperations
     {
-        public Dictionary<string, TimeSpan> funcTimes = new Dictionary<string, TimeSpan>();
+        private Dictionary<string, int> _directories { get; set; } = new Dictionary<string, int>();
+        private Dictionary<string, Result> _funcResults = new Dictionary<string, Result>();
+
+        public DirectoryInfo GetNextDir(string? dirPath = null)
+        {
+            int count = _directories.Count;
+
+            if (dirPath == null)
+            {
+                dirPath = Path.Combine(Environment.CurrentDirectory, count.ToString());
+            }
+            DirectoryInfo dir = Directory.CreateDirectory(dirPath);
+
+            _directories.TryAdd(dir.FullName, count);
+            return dir;
+        }
+
+        public int? GetDirOrder(string? path)
+        {
+            if (path == null)
+            {
+                return null;
+            }
+            _directories.TryGetValue(path, out int order);
+            return order;
+        }
 
         public enum SizeUnit
         {
@@ -22,225 +69,310 @@ namespace ZipWasm.Client.Helpers
             GB,
         }
 
-        public static double ToSize(long bytes, SizeUnit unit)
+        public static string FormatTimeSpan(TimeSpan timeSpan)
         {
-            switch (unit)
+            if (timeSpan.TotalSeconds < 1)
             {
-                case SizeUnit.B:
-                    return bytes;
-                case SizeUnit.KB:
-                    return bytes / 1024.0;
-                case SizeUnit.MB:
-                    return bytes / (1024.0 * 1024.0);
-                case SizeUnit.GB:
-                    return bytes / (1024.0 * 1024.0 * 1024.0);
-                default:
-                    throw new ArgumentException("Unsupported size unit", nameof(unit));
+                return $"{timeSpan.TotalMilliseconds}ms";
+            }
+            else if (timeSpan.TotalMinutes < 1)
+            {
+                return $"{Math.Round(timeSpan.TotalSeconds, 1)}s";
+            }
+            else if (timeSpan.TotalHours < 1)
+            {
+                return $"{timeSpan.Minutes}m {Math.Round(timeSpan.TotalSeconds, 0)}s";
+            }
+            return "ERR";
+        }
+
+        public static string ConvertBytesToReadableUnit(long bytes)
+        {
+            const long KB = 1000;
+            const long MB = KB * 1000;
+            const long GB = MB * 1000;
+
+            if (bytes >= GB)
+            {
+                return $"{bytes / (double)GB:F1} GB";
+            }
+            else if (bytes >= MB)
+            {
+                return $"{bytes / (double)MB:F1} MB";
+            }
+            else if (bytes >= KB)
+            {
+                return $"{bytes / (double)KB:F1} KB";
+            }
+            else
+            {
+                return $"{bytes} B";
             }
         }
 
-        public string GetDuration(string path)
+        public Result GetResult(string path)
         {
-            if (path != null && funcTimes.TryGetValue(path, out TimeSpan duration))
+            if (path != null && _funcResults.TryGetValue(path, out Result result))
             {
-                return Math.Round(duration.TotalMilliseconds, 1) + "ms";
+                return result;
             }
-            return "";
+            return Result.None();
         }
 
-
-        public KeyValuePair<string, TimeSpan> VCDiffEncode(DirectoryInfo? oldDir, DirectoryInfo? newDir)
+        public KeyValuePair<string, Result> Diff(DirectoryInfo? srcDir, DirectoryInfo? targetDir)
         {
-            if (oldDir == null || newDir == null)
+            if (srcDir == null || targetDir == null)
             {
-                return new KeyValuePair<string, TimeSpan>("", TimeSpan.Zero);
+                return new KeyValuePair<string, Result>("", Result.None());
             }
 
-            DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(oldDir.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo encodeDir = GetNextDir(Path.Combine(srcDir.FullName, targetDir.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(encodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(encodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(encodeDir.FullName, oldVal);
             }
 
-            var newFiles = newDir.GetFiles();
+            var newFiles = targetDir.GetFiles();
             TimeSpan total = TimeSpan.Zero;
-            foreach (FileInfo oldFile in oldDir.GetFiles())
+            long totalResultSize = 0;
+            long totalStartSize = 0;
+            foreach (FileInfo oldFile in srcDir.GetFiles())
             {
                 FileInfo newFile = newFiles.Where(newFile => newFile.Name == oldFile.Name).FirstOrDefault();
-                total += VCDiffEncode(oldFile, newFile, encodeDir);
+
+                totalStartSize += newFile == null ? 0 : newFile.Length;
+                total += VCDiffEncode(oldFile, newFile, encodeDir, ref totalResultSize);
             }
-            funcTimes[encodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[encodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(encodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> VCDiffDecode(DirectoryInfo? oldDir, DirectoryInfo? diffDir)
+        public KeyValuePair<string, Result> Un_Diff(DirectoryInfo? srcDir, DirectoryInfo? diffDir)
         {
-            if (oldDir == null || diffDir == null)
+            if (srcDir == null || diffDir == null)
             {
-                return new KeyValuePair<string, TimeSpan>("", TimeSpan.Zero);
+                return new KeyValuePair<string, Result>("", Result.None());
             }
 
-            DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(diffDir.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo decodeDir = GetNextDir(Path.Combine(diffDir.FullName, srcDir.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(decodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(decodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(decodeDir.FullName, oldVal);
             }
 
             var diffFiles = diffDir.GetFiles();
             TimeSpan total = TimeSpan.Zero;
-            foreach (FileInfo oldFile in oldDir.GetFiles())
+            long totalResultSize = 0;
+            long totalStartSize = 0;
+            foreach (FileInfo oldFile in srcDir.GetFiles())
             {
                 FileInfo diffFile = diffFiles.Where(diffFile => diffFile.Name == oldFile.Name).FirstOrDefault();
-                total += VCDiffDecode(oldFile, diffFile, decodeDir);
+
+                totalStartSize += diffFile == null ? 0 : diffFile.Length;
+                total += VCDiffDecode(oldFile, diffFile, decodeDir, ref totalResultSize);
             }
-            funcTimes[decodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[decodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(decodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> GZipEncode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Gzip(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo encodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(encodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(encodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(encodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += GZipEncode(file, encodeDir);
+                totalStartSize += file.Length;
+                total += GZipEncode(file, encodeDir, ref totalResultSize);
             }
-            funcTimes[encodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[encodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(encodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> GZipDecode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Un_Gzip(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo decodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(decodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(decodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(decodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += GZipDecode(file, decodeDir);
+                totalStartSize += file.Length;
+                total += GZipDecode(file, decodeDir, ref totalResultSize);
             }
-            funcTimes[decodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[decodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(decodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> DeflateEncode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Deflate(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo encodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(encodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(encodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(encodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += DeflateEncode(file, encodeDir);
+                totalStartSize += file.Length;
+                total += DeflateEncode(file, encodeDir, ref totalResultSize);
             }
-            funcTimes[encodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[encodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(encodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> DeflateDecode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Un_Deflate(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo decodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(decodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(decodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(decodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += DeflateDecode(file, decodeDir);
+                totalStartSize += file.Length;
+                total += DeflateDecode(file, decodeDir, ref totalResultSize);
             }
-            funcTimes[decodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[decodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(decodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> BrotliEncode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Brotli(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo encodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(encodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(encodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(encodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += BrotliEncode(file, encodeDir);
+                totalStartSize += file.Length;
+                total += BrotliEncode(file, encodeDir, ref totalResultSize);
             }
-            funcTimes[encodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[encodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(encodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> BrotliDecode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Un_Brotli(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo decodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(decodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(decodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(decodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += BrotliDecode(file, decodeDir);
+                totalStartSize += file.Length;
+                total += BrotliDecode(file, decodeDir, ref totalResultSize);
             }
-            funcTimes[decodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[decodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(decodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> ZstdEncode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Zstd(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo encodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo encodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(encodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(encodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(encodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += ZstdEncode(file, encodeDir);
+                totalStartSize += file.Length;
+                total += ZstdEncode(file, encodeDir, ref totalResultSize);
             }
-            funcTimes[encodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(encodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[encodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(encodeDir.FullName, result);
         }
 
-        public KeyValuePair<string, TimeSpan> ZstdDecode(DirectoryInfo files, DirectoryInfo _ = null)
+        public KeyValuePair<string, Result> Un_Zstd(DirectoryInfo files, DirectoryInfo _ = null)
         {
-            DirectoryInfo decodeDir = Directory.CreateDirectory(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
+            DirectoryInfo decodeDir = GetNextDir(Path.Combine(files.FullName, MethodBase.GetCurrentMethod().Name));
 
-            if (funcTimes.TryGetValue(decodeDir.FullName, out TimeSpan oldVal))
+            if (_funcResults.TryGetValue(decodeDir.FullName, out Result oldVal))
             {
-                return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, oldVal);
+                return new KeyValuePair<string, Result>(decodeDir.FullName, oldVal);
             }
 
             TimeSpan total = TimeSpan.Zero;
+            long totalResultSize = 0;
+            long totalStartSize = 0;
             foreach (FileInfo file in files.GetFiles())
             {
-                total += ZstdDecode(file, decodeDir);
+                totalStartSize += file.Length;
+                total += ZstdDecode(file, decodeDir, ref totalResultSize);
             }
-            funcTimes[decodeDir.FullName] = total;
-            return new KeyValuePair<string, TimeSpan>(decodeDir.FullName, total);
+
+            double ratio = (double)totalResultSize / totalStartSize;
+            Result result = new Result(total, true, ratio, totalResultSize);
+            _funcResults[decodeDir.FullName] = result;
+            return new KeyValuePair<string, Result>(decodeDir.FullName, result);
         }
 
 
@@ -250,7 +382,7 @@ namespace ZipWasm.Client.Helpers
 
 
 
-        private TimeSpan VCDiffEncode(FileInfo? oldFile, FileInfo? newFile, DirectoryInfo encodeDir)
+        private TimeSpan VCDiffEncode(FileInfo? oldFile, FileInfo? newFile, DirectoryInfo encodeDir, ref long resultSize)
         {
             if (oldFile == null || newFile == null)
             {
@@ -263,13 +395,15 @@ namespace ZipWasm.Client.Helpers
             using var targetStream = File.Open(newFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             DateTime start = DateTime.Now;
-            using VcEncoder coder = new VcEncoder(sourceStream, targetStream, File.Create(diffFile.FullName));
+            using var resultStream = File.Create(diffFile.FullName);
+            using VcEncoder coder = new VcEncoder(sourceStream, targetStream, resultStream);
             VCDiffResult encodeRes = coder.Encode();
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.Length;
             return duration;
         }
 
-        private TimeSpan VCDiffDecode(FileInfo? oldFile, FileInfo? diffFile, DirectoryInfo decodeDir)
+        private TimeSpan VCDiffDecode(FileInfo? oldFile, FileInfo? diffFile, DirectoryInfo decodeDir, ref long resultSize)
         {
             if (oldFile == null || diffFile == null)
             {
@@ -282,105 +416,123 @@ namespace ZipWasm.Client.Helpers
             using var deltaStream = File.Open(diffFile.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             DateTime start = DateTime.Now;
-            using VcDecoder decoder = new VcDecoder(sourceStream, deltaStream, File.Create(encodedFile.FullName));
+            using var resultStream = File.Create(encodedFile.FullName);
+            using VcDecoder decoder = new VcDecoder(sourceStream, deltaStream, resultStream);
             VCDiffResult decodeRes = decoder.Decode(out long bytesWritten);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.Length;
             return duration;
         }
 
-        private TimeSpan GZipEncode(FileInfo file, DirectoryInfo encodeDir)
+        private TimeSpan GZipEncode(FileInfo file, DirectoryInfo encodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
 
             using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             DateTime start = DateTime.Now;
-            fileStream.CopyTo(new GZipStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
+            using var resultStream = new GZipStream(File.Create(encodedFile.FullName), CompressionMode.Compress);
+            fileStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.BaseStream.Length;
             return duration;
         }
 
-        private TimeSpan GZipDecode(FileInfo file, DirectoryInfo decodeDir)
+        private TimeSpan GZipDecode(FileInfo file, DirectoryInfo decodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
 
             using var processedStream = new GZipStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
 
             DateTime start = DateTime.Now;
-            processedStream.CopyTo(File.Create(encodedFile.FullName));
+            using var resultStream = File.Create(encodedFile.FullName);
+            processedStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.Length;
             return duration;
         }
 
-        private TimeSpan DeflateEncode(FileInfo file, DirectoryInfo encodeDir)
+        private TimeSpan DeflateEncode(FileInfo file, DirectoryInfo encodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
 
             using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             DateTime start = DateTime.Now;
-            fileStream.CopyTo(new DeflateStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
+            using var resultStream = new DeflateStream(File.Create(encodedFile.FullName), CompressionMode.Compress);
+            fileStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.BaseStream.Length;
             return duration;
         }
 
-        private TimeSpan DeflateDecode(FileInfo file, DirectoryInfo decodeDir)
+        private TimeSpan DeflateDecode(FileInfo file, DirectoryInfo decodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
 
             using var processedStream = new DeflateStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
 
             DateTime start = DateTime.Now;
-            processedStream.CopyTo(File.Create(encodedFile.FullName));
+            using var resultStream = File.Create(encodedFile.FullName);
+            processedStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.Length;
             return duration;
         }
 
-        private TimeSpan BrotliEncode(FileInfo file, DirectoryInfo encodeDir)
+        private TimeSpan BrotliEncode(FileInfo file, DirectoryInfo encodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
 
             using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             DateTime start = DateTime.Now;
-            fileStream.CopyTo(new BrotliStream(File.Create(encodedFile.FullName), CompressionMode.Compress));
+            using var resultStream = new BrotliStream(File.Create(encodedFile.FullName), CompressionMode.Compress);
+            fileStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.BaseStream.Length;
             return duration;
         }
 
-        private TimeSpan BrotliDecode(FileInfo file, DirectoryInfo decodeDir)
+        private TimeSpan BrotliDecode(FileInfo file, DirectoryInfo decodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
 
             using var processedStream = new BrotliStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read), CompressionMode.Decompress);
 
             DateTime start = DateTime.Now;
-            processedStream.CopyTo(File.Create(encodedFile.FullName));
+            using var resultStream = File.Create(encodedFile.FullName);
+            processedStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.Length;
             return duration;
         }
 
-        private TimeSpan ZstdEncode(FileInfo file, DirectoryInfo encodeDir)
+        private TimeSpan ZstdEncode(FileInfo file, DirectoryInfo encodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(encodeDir.FullName, file.Name));
 
             using var fileStream = File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             DateTime start = DateTime.Now;
-            fileStream.CopyTo(new CompressionStream(File.Create(encodedFile.FullName)));
+            using var resultStream = new CompressionStream(File.Create(encodedFile.FullName));
+            fileStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.Length;
             return duration;
         }
 
-        private TimeSpan ZstdDecode(FileInfo file, DirectoryInfo decodeDir)
+        private TimeSpan ZstdDecode(FileInfo file, DirectoryInfo decodeDir, ref long resultSize)
         {
             FileInfo encodedFile = new FileInfo(Path.Combine(decodeDir.FullName, file.Name));
 
             using var processedStream = new DecompressionStream(File.Open(file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read));
 
             DateTime start = DateTime.Now;
-            processedStream.CopyTo(File.Create(encodedFile.FullName));
+            using var resultStream = File.Create(encodedFile.FullName);
+            processedStream.CopyTo(resultStream);
             TimeSpan duration = DateTime.Now - start;
+            resultSize += resultStream.Length;
             return duration;
         }
     }

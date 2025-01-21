@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\wwwroot\\javascript.js",
+      "PackagePath": "staticwebassets\\javascript.js"
+    },
+    {
       "Id": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
