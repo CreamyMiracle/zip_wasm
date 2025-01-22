@@ -88,9 +88,9 @@ namespace ZipWasm.Client.Helpers
 
         public static string ConvertBytesToReadableUnit(long bytes)
         {
-            const long KB = 1000;
-            const long MB = KB * 1000;
-            const long GB = MB * 1000;
+            const long KB = 1024;
+            const long MB = KB * 1024;
+            const long GB = MB * 1024;
 
             if (bytes >= GB)
             {

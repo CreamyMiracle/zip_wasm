@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZipWasm.Client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+219576a44b1d757fa38cfca77f9808f2e909f7f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e1404a4ee6f1fdab82a4b13f77e83d6d2bf40e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZipWasm.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZipWasm.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,4 +15,17 @@
 	<PackageReference Include="ZstdNet" Version="1.4.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Remove="C:\Users\JuhanaR\.nuget\packages\zstdnet\1.4.5\build\x86\libzstd.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="C:\Users\JuhanaR\.nuget\packages\zstdnet\1.4.5\build\x64\libzstd.dll" />
+    <Content Include="C:\Users\JuhanaR\.nuget\packages\zstdnet\1.4.5\build\x86\libzstd.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="C:\Users\JuhanaR\.nuget\packages\zstdnet\1.4.5\build\x64\libzstd.dll" />
+  </ItemGroup>
+
 </Project>

@@ -3,44 +3,7 @@
   "WorkspaceRootPath": "D:\\Dev\\zip_wasm\\ZipWasm\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\helpers\\fileoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\helpers\\fileoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\wwwroot\\javascript.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\wwwroot\\javascript.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6486660E-9A7B-4C14-B814-59754309879A}|ZipWasm\\ZipWasm.csproj|solutionrelative:zipwasm\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|d:\\dev\\zip_wasm\\zipwasm\\zipwasm.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5D204E35-630E-48C1-BD20-F2607F222015}|ZipWasm.Client\\ZipWasm.Client.csproj|solutionrelative:zipwasm.client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.DefaultItems.Shared.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +13,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,132 +25,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "bootstrap.bundle.js",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
-              "RelativeDocumentMoniker": "ZipWasm\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
-              "RelativeToolTip": "ZipWasm\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAAAJ4AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-21T17:06:52.383Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Program.cs",
-              "RelativeDocumentMoniker": "ZipWasm\\Program.cs",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Program.cs",
-              "RelativeToolTip": "ZipWasm\\Program.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAtwCkAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T13:20:50.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Routes.razor",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\Routes.razor",
-              "RelativeDocumentMoniker": "ZipWasm\\Components\\Routes.razor",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\Routes.razor",
-              "RelativeToolTip": "ZipWasm\\Components\\Routes.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-21T13:01:35.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "_Imports.razor",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\_Imports.razor",
-              "RelativeDocumentMoniker": "ZipWasm\\Components\\_Imports.razor",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\_Imports.razor",
-              "RelativeToolTip": "ZipWasm\\Components\\_Imports.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-21T12:59:30.312Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "javascript.js",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\wwwroot\\javascript.js",
-              "RelativeDocumentMoniker": "ZipWasm\\wwwroot\\javascript.js",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\wwwroot\\javascript.js",
-              "RelativeToolTip": "ZipWasm\\wwwroot\\javascript.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-21T12:58:58.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.razor",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\App.razor",
-              "RelativeDocumentMoniker": "ZipWasm\\Components\\App.razor",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm\\Components\\App.razor",
-              "RelativeToolTip": "ZipWasm\\Components\\App.razor",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-21T12:55:27.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FileOperations.cs",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Helpers\\FileOperations.cs",
-              "RelativeDocumentMoniker": "ZipWasm.Client\\Helpers\\FileOperations.cs",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Helpers\\FileOperations.cs",
-              "RelativeToolTip": "ZipWasm.Client\\Helpers\\FileOperations.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAIAxwDEAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T12:55:24.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "_Imports.razor",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\_Imports.razor",
-              "RelativeDocumentMoniker": "ZipWasm.Client\\_Imports.razor",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\_Imports.razor",
-              "RelativeToolTip": "ZipWasm.Client\\_Imports.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-21T12:55:21.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Program.cs",
-              "RelativeDocumentMoniker": "ZipWasm.Client\\Program.cs",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Program.cs",
-              "RelativeToolTip": "ZipWasm.Client\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T12:55:21.007Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Counter.razor",
-              "DocumentMoniker": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Pages\\Counter.razor",
-              "RelativeDocumentMoniker": "ZipWasm.Client\\Pages\\Counter.razor",
-              "ToolTip": "D:\\Dev\\zip_wasm\\ZipWasm\\ZipWasm.Client\\Pages\\Counter.razor*",
-              "RelativeToolTip": "ZipWasm.Client\\Pages\\Counter.razor*",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAAD0AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-19T12:36:01.191Z",
+              "Title": "Microsoft.NET.Sdk.DefaultItems.Shared.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.DefaultItems.Shared.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.DefaultItems.Shared.targets",
+              "ViewState": "AgIAAPAAAAAAUSMs9/QNwP4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-01-22T09:05:10.186Z",
               "EditorCaption": ""
             }
           ]
